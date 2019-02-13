@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^inschrijven.mees\.space [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://inschrijven.mees.space/$1 [R=301,L]
