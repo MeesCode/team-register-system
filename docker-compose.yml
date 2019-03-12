@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: toor
       MYSQL_DATABASE: c27055aanmeldsysteem
       MYSQL_USER: c27055mees
-      MYSQL_PASSWORD: merel4840
+      MYSQL_PASSWORD: test
     ports:
       - "9906:3306"
     volumes:
