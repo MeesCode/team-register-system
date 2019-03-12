@@ -1,12 +1,8 @@
--- running this will empty your old database and create a new one
 
-DROP SCHEMA IF EXISTS `RoboCup` ;
-CREATE SCHEMA IF NOT EXISTS `RoboCup` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `RoboCup` ;
+CREATE SCHEMA IF NOT EXISTS `c27055aanmeldsysteem` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `c27055aanmeldsysteem` ;
 
-DROP TABLE IF EXISTS `RoboCup`.`users`;
-
-CREATE TABLE IF NOT EXISTS `RoboCup`.`users` (
+CREATE TABLE IF NOT EXISTS `c27055aanmeldsysteem`.`users` (
     email VARCHAR(255) NOT NULL PRIMARY KEY,
     school VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -16,21 +12,18 @@ CREATE TABLE IF NOT EXISTS `RoboCup`.`users` (
     phone VARCHAR(32) NOT NULL
 ) ENGINE = INNODB;
 
-DROP TABLE IF EXISTS `RoboCup`.`types`;
-
-CREATE TABLE IF NOT EXISTS `RoboCup`.`game_types` (
+CREATE TABLE IF NOT EXISTS `c27055aanmeldsysteem`.`game_types` (
     type_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     type_name VARCHAR(32) NOT NULL
 ) ENGINE = INNODB;
 
-DROP TABLE IF EXISTS `RoboCup`.`teams`;
-
-CREATE TABLE IF NOT EXISTS `RoboCup`.`teams` (
+CREATE TABLE IF NOT EXISTS `c27055aanmeldsysteem`.`teams` (
 	team_id INT AUTO_INCREMENT KEY PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     type_id INT NOT NULL,
     members INT NOT NULL,
+    age INT NOT NULL,
     comment TEXT,
     FOREIGN KEY (email)
         REFERENCES users(email)
@@ -42,11 +35,9 @@ CREATE TABLE IF NOT EXISTS `RoboCup`.`teams` (
 
 -- actual data
 INSERT INTO game_types (type_name) VALUES ("Rescue");
-INSERT INTO game_types (type_name) VALUES ("OnStage");
+INSERT INTO game_types (type_name) VALUES ("Dansen");
 INSERT INTO game_types (type_name) VALUES ("Voetbal");
 INSERT INTO game_types (type_name) VALUES ("Groeneveld");
 
 -- test data
 INSERT INTO users (email, school, password, admin, address, name, phone) VALUES ("mees@robocupjunior.nl", "TU Delft", "$2y$10$.J.MfcHMlwaMVbtJlOKsxe/2imcmtQ8f3G7nX9PLSgT/hvHlT3eva", true, "Kleverling Buismanweg 66", "Mees Brinkhuis", "0625314532");
-INSERT INTO teams (email, name, type_id, members) VALUES ("mees@robocupjunior.nl", "GLaDOS 1", 1, 1);
-INSERT INTO teams (email, name, type_id, members) VALUES ("mees@robocupjunior.nl", "GLaDOS 2", 4, 1);

@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-header"><?= $name ?></div>
     <div class="card-body">
-        <?php if($_SESSION["admin"]) echo "email: ".$email ?><br/>
+        <?php if($_SESSION["admin"]) echo "email: ".$email."<br/>" ?>
         wedstrijd: <?= $type_name ?><br/>
         aantal teamleden: <?= $members ?><br/>
         opmerking: <?= $comment ?><br/>

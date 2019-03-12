@@ -29,6 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $stmt = $mysqli->prepare($query);
 
     $stmt->bind_param("s", $param_email);
+    
     // Set parameters
     $param_email = trim($_POST["email"]);
     

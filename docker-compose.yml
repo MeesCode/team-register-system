@@ -1,0 +1,26 @@
+# ./docker-compose.yml
+
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: c27055aanmeldsysteem
+      MYSQL_USER: c27055mees
+      MYSQL_PASSWORD: merel4840
+    ports:
+      - "9906:3306"
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d/
+      
+  web:
+    build: ./server/
+    container_name: php_web
+    depends_on:
+      - db
+    volumes:
+      - ./public_html/:/var/www/html/
+    ports:
+      - "8000:80"

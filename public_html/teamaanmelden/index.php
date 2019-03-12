@@ -64,7 +64,7 @@ page:
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <?php if($_SESSION["admin"]) { ?>
     <div class="form-group">
-        <label>Email (leeg laten om huidig administratie email te gebruiken)</label>
+        <label>Email</label>
         <input type="email" name="email" class="form-control">
     </div>  
     <?php } ?>
@@ -77,8 +77,12 @@ page:
         <?php require("../utilities/get_types.php"); ?>
     </div>   
     <div class="form-group">
-        <label>Hoeveelheid teamleden</label>
-        <input type="number" name="members" class="form-control" min="1">
+        <label>Hoeveelheid teamleden (maximaal 5)</label>
+        <input type="number" name="members" class="form-control" min="1" max="5">
+    </div>
+    <div class="form-group">
+        <label>leeftijd oudste deelnemer</label>
+        <input type="number" name="age" class="form-control" min="1">
     </div>   
     <div class="form-group">
         <label>Opmerking</label>

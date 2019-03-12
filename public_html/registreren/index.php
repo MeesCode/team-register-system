@@ -78,7 +78,9 @@ page:
 <?php require_once("../components/head.php"); ?>
 
 <h2>Registreren</h2>
+<p>Heeft u al een account? <a href="../login">Hier kunt u inloggen</a>.</p>
 <p>De contactpersoon van de school moet een account aanmaken waarna er teams aangemeld kunnen worden.</p>
+<p>Door te registreren gaat u akkoord met ons <a href="https://www.robocupjunior.nl/gdpr-avg/">privacystatement</a>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <div class="form-group">
         <label>Naam contactpersoon</label>
@@ -115,7 +117,6 @@ page:
         <input type="submit" class="btn btn-primary" value="Submit">
         <input type="reset" class="btn btn-default" value="Reset">
     </div>
-    <p>Heeft u al een account? <a href="../login">Hier kunt u inloggen</a>.</p>
 </form>
 
    
