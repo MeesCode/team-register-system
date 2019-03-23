@@ -31,6 +31,7 @@ email: <?= $_SESSION["email"] ?><br/>
 school: <?= $_SESSION["school"] ?><br/>
 
 <p>
+    <a href="/wachtwoord_wijzigen" class="mt-3 btn btn-secondary">Wachtwoord wijzigen</a>
     <a href="utilities/logout.php" class="mt-3 btn btn-secondary">Uitloggen</a>
 </p>
 
