@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('overview');
+});
+
 Auth::routes();
 
 Route::get('/overview', 'OverviewController@index')->middleware('auth')->name('overview');
