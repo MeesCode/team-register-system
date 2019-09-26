@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/overview', 'OverviewController@index')->middleware('auth')->name('overview');
+Route::get('/profile', 'ProfileController@index')->middleware('auth');
+
+Route::get('/teams', 'TeamsController@index')->middleware('auth')->name('teams');
+Route::get('/teams/add', 'TeamsController@addIndex')->middleware('auth')->name('addTeam');
+Route::post('/teams/add', 'TeamsController@createTeam')->middleware('auth')->name('createTeam');
+
+Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
+

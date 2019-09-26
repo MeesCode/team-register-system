@@ -49,9 +49,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^.+\s.+$/i'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required', 'string', 'min:10', 'regex:%^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$%i'],
+            'school_name' => ['required', 'string', 'max:255'],
+            'school_place' => ['required', 'string', 'max:255'],
+            'school_address' => ['required', 'string', 'max:255', 'regex:/^.+\d+.*$/i'],
+            'school_postal_code' => ['required', 'string', 'max:255', 'regex:/^\d{4}\s*[A-Za-z]{2}$/i'],
         ]);
     }
 
@@ -66,7 +71,13 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
+            'school_name' => $data['school_name'],
+            'school_place' => $data['school_place'],
+            'school_address' => $data['school_address'],
+            'school_postal_code' => $data['school_postal_code'],
             'password' => Hash::make($data['password']),
+            'type' => User::DEFAULT_TYPE, 
         ]);
     }
 }
