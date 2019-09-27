@@ -28,7 +28,7 @@ class TeamsController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required', Rule::in($categories)],
             'members_amount' => ['required', 'integer', 'max:4', 'min:1'],
-            'age_oldest_member' => ['required', 'integer'],
+            'age_oldest_member' => ['required', 'integer', 'min:0'],
         ]);
 
         if ($validator->fails()) {

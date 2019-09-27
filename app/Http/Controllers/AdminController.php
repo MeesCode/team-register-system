@@ -15,6 +15,12 @@ class AdminController extends Controller
     {
         $teams = Team::all();
         $users = User::all();
+
+        // include school names as a team property
+        foreach($teams as $team){
+            $team->school_name = User::find($team->user_id)->school_name;
+        }
+        
         return view('admin', ['teams' => $teams, 'users' => $users]);
     }
 

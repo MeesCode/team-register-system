@@ -25,6 +25,10 @@
 							<table class="table m-0">
 								<tbody>
 									<tr>
+										<th>School</th>
+										<td>{{ $team->school_name }}</td>
+									</tr>
+									<tr>
 										<th>Category</th>
 										<td>{{ $team->category }}</td>
 									</tr>

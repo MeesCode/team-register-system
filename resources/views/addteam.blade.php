@@ -62,7 +62,7 @@
                             <label for="age_oldest_member" class="col-md-4 col-form-label text-md-right">Age oldest team member</label>
 
                             <div class="col-md-6">
-                                <input id="age_oldest_member" type="number" max="21" min="1" class="form-control @error('age_oldest_member') is-invalid @enderror" name="age_oldest_member" value="{{ old('age_oldest_member') }}" required autocomplete="age_oldest_member">
+                                <input id="age_oldest_member" type="number" min="1" class="form-control @error('age_oldest_member') is-invalid @enderror" name="age_oldest_member" value="{{ old('age_oldest_member') }}" required autocomplete="age_oldest_member">
 
                                 @error('age_oldest_member')
                                     <span class="invalid-feedback" role="alert">
