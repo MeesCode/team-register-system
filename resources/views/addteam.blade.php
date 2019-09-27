@@ -48,7 +48,7 @@
                             <label for="members_amount" class="col-md-4 col-form-label text-md-right">Amount of members</label>
 
                             <div class="col-md-6">
-                                <input id="members_amount" type="number" max="5" min="1" class="form-control @error('members_amount') is-invalid @enderror" name="members_amount" value="{{ old('members_amount') }}" required autocomplete="members_amount">
+                                <input id="members_amount" type="number" max="4" min="1" class="form-control @error('members_amount') is-invalid @enderror" name="members_amount" value="{{ old('members_amount') }}" required autocomplete="members_amount">
 
                                 @error('members_amount')
                                     <span class="invalid-feedback" role="alert">

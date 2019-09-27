@@ -22,13 +22,7 @@ class TeamsController extends Controller
     }
 
     public function createTeam(Request $request){
-
-        // user is not logged in
-        if(!Auth::check()){
-            return;
-        }
-
-        // make sure the request is valid and from the correct user
+        // make sure the request is valid
         $categories = ['rescue_basic', 'rescue_advanced', 'soccer', 'dancing'];
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
@@ -49,6 +43,21 @@ class TeamsController extends Controller
         $team->age_oldest_member = $request->age_oldest_member;
         
         $team->save();
+
+        return redirect(route('teams'));
+
+    }
+
+    public function removeTeam(Request $request){
+        // get team by it's id
+        $team = Team::findOrFail($request->id);
+
+        // if the team is not owned by the current user, reject
+        if(Auth::user()->id != $team->user_id){
+            return;
+        }
+
+        $team->delete();
 
         return redirect(route('teams'));
 

@@ -14,6 +14,11 @@
 					<div class="card mt-3">
 						<div class="card-header">
 							{{ $team->name }}
+							<form method="POST" class="float-right" action="{{ route('removeTeamAdmin') }}">
+									@csrf
+									<input type="hidden" name="id" value="{{ $team->id }}">
+									<button type="submit" class="btn btn-danger btn-sm">remove team</button>
+							</form>
 						</div>
 
 						<div class="card-body p-0">
@@ -56,7 +61,7 @@
 							<table class="table m-0">
 								<tbody>
 									<tr>
-										<th>Email adres</th>
+										<th>Email address</th>
 										<td>{{ $user->email }}</td>
 									</tr>
 									<tr>
@@ -78,6 +83,10 @@
 									<tr>
 										<th>School postal code</th>
 										<td>{{ $user->school_postal_code }}</td>
+									</tr>
+									<tr>
+										<th>Registered at</th>
+										<td>{{ $user->created_at }}</td>
 									</tr>
 								</tbody>
 							</table>

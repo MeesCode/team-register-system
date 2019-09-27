@@ -18,4 +18,14 @@ class AdminController extends Controller
         return view('admin', ['teams' => $teams, 'users' => $users]);
     }
 
+    public function removeTeam(Request $request){
+        // get team by it's id
+        $team = Team::findOrFail($request->id);
+
+        $team->delete();
+
+        return redirect(route('admin'));
+
+    }
+
 }

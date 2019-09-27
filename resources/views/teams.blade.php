@@ -17,6 +17,11 @@
                     <div class="card mt-3">
                         <div class="card-header">
                             {{ $team->name }}
+                            <form method="POST" class="float-right" action="{{ route('removeTeam') }}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $team->id }}">
+                                <button type="submit" class="btn btn-danger btn-sm">remove team</button>
+                            </form>
                         </div>
 
                         <div class="card-body p-0">
