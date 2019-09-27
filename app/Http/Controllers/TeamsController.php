@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Team;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use App\Notifications\newTeamAdmin;
+use App\Notifications\newTeamUser;
+use Illuminate\Support\Facades\Notification;
 
 class TeamsController extends Controller
 {
@@ -44,6 +48,16 @@ class TeamsController extends Controller
         
         $team->save();
 
+        // get all admins and send them an email
+        $admins = User::where('type', User::ADMIN_TYPE)->get();
+        foreach($admins as $admin){
+            Notification::route('mail', $admin->email)->notify(new newTeamAdmin($team));
+        }
+
+        // also send a confirmation email to the user
+        $user = User::find($team->user_id);
+        Notification::route('mail', $user->email)->notify(new newTeamUser($team));
+        
         return redirect(route('teams'));
 
     }
