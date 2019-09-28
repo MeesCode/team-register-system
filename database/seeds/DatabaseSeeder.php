@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // admin
-        DB::table('users')->insert([
+        User::create([
             'name' => 'RoboCupJunior',
             'email' => 'robocup@junior.nl',
             'phone_number' => '1234567890',
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // regualr test user
-        DB::table('users')->insert([
+        User::create([
             'name' => 'Mees Brinkhuis',
             'email' => 'mees@space.nl',
             'phone_number' => '1234567890',
