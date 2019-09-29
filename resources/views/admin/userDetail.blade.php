@@ -8,7 +8,21 @@
         <button type="button" class="btn btn-primary">add new team</button>
     </a>
 
-	<div class="card mt-3">
+	<form method="POST" action="{{ route('deleteUser') }}" class="mt-3 mb-3">
+		@csrf
+		<input type="hidden" name="id" value="{{ $user->id }}">
+		<button type="submit"  
+		data-toggle="tooltip" 
+		data-placement="top" 
+		title="Remove this user" 
+		onclick="return confirm('are you sure you want to delete this user and all their teams?')" 
+		class="btn btn-danger"
+		>
+			remove this user
+		</button>
+	</form>
+
+	<div class="card">
 		<div class="card-header">
 			{{ $user->name }}
 		</div>

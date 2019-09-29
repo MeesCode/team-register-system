@@ -44,13 +44,17 @@ class AdminController extends Controller
 
     public function overview(Request $request){
         return view('admin.overview');
-
-
     }
 
     public function addTeam($id){
         $user = User::findOrFail($id);
         return view('admin.addTeamAdmin', ['user' => $user]);
+    }
+
+    public function deleteUser(Request $request){
+        $user = User::findOrFail($request->id);
+        $user->delete();
+        return redirect(route('admin'));
     }
 
     public function createTeam(Request $request){
@@ -80,6 +84,8 @@ class AdminController extends Controller
         $team->age_oldest_member = $request->age_oldest_member;
         
         $team->save();
+
+        // disable email notifications on admin actions
 
         // get all admins and send them an email
         // $admins = User::where('type', User::ADMIN_TYPE)->get();

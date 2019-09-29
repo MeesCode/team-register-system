@@ -30,4 +30,6 @@ Route::get('/admin/overview', 'AdminController@overview')->middleware('is_admin'
 Route::get('/admin/user/{id}', 'AdminController@userDetail')->middleware('is_admin')->name('userDetail');
 Route::get('/admin/teams/add/{id}', 'AdminController@addTeam')->middleware('is_admin')->name('addTeamAdmin');
 Route::post('/admin/teams/add', 'AdminController@createTeam')->middleware('is_admin')->name('createTeamAdmin');
+Route::post('/admin/user/delete', 'AdminController@deleteUser')->middleware('is_admin')->name('deleteUser');
+
 

@@ -77,6 +77,19 @@
 								<i class="fas fa-user-plus"></i>
 							</button>
 						</a>
+						<form method="POST" action="{{ route('deleteUser') }}" class="d-inline">
+							@csrf
+							<input type="hidden" name="id" value="{{ $user->id }}">
+							<button type="submit"  
+							data-toggle="tooltip" 
+							data-placement="top" 
+							title="Remove this user" 
+							onclick="return confirm('are you sure you want to delete this user and all their teams?')" 
+							class="btn btn-danger btn-sm"
+							>
+								<i class="fas fa-trash-alt"></i>
+							</button>
+						</form>
 					</td>
 				</tr>
 			@endforeach
