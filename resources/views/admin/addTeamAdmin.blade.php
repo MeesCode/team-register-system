@@ -2,8 +2,24 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('createTeam') }}">
+    <form method="POST" action="{{ route('createTeamAdmin') }}">
         @csrf
+
+        <div class="form-group row">
+            <label for="user_id" class="col-md-4 col-form-label text-md-right">School (coach)</label>
+
+            <div class="col-md-6">
+                <input type="text" class="form-control @error('user_id') is-invalid @enderror" value="{{ $user->school_name}} ({{ $user->name }})" required disabled>
+
+                <input id="user_id" name="user_id" type="hidden" class="form-control" value="{{ $user->id }}" required>
+
+                @error('user_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
 
         <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">Team name</label>
@@ -18,6 +34,7 @@
                 @enderror
             </div>
         </div>
+
         <div class="form-group row">
             <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
 
@@ -67,7 +84,7 @@
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" onclick="return confirm('Adding a team here counts as an official registration for the RoboCupJunior Dutch national championship. You will be able to remove this team at any time until one week before the competition.')" class="btn btn-primary">Add team</button>
+                <button type="submit" class="btn btn-primary">Add team</button>
             </div>
         </div>
     </form>

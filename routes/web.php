@@ -26,6 +26,8 @@ Route::post('/teams/remove', 'TeamsController@removeTeam')->middleware('auth')->
 
 Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
 Route::post('/admin/removeTeam', 'AdminController@removeTeam')->middleware('is_admin')->name('removeTeamAdmin');
-Route::get('/overview', 'AdminController@overview')->middleware('is_admin')->name('overview');
-Route::get('/user/{id}', 'AdminController@userDetail')->middleware('is_admin')->name('userDetail');
+Route::get('/admin/overview', 'AdminController@overview')->middleware('is_admin')->name('overview');
+Route::get('/admin/user/{id}', 'AdminController@userDetail')->middleware('is_admin')->name('userDetail');
+Route::get('/admin/teams/add/{id}', 'AdminController@addTeam')->middleware('is_admin')->name('addTeamAdmin');
+Route::post('/admin/teams/add', 'AdminController@createTeam')->middleware('is_admin')->name('createTeamAdmin');
 

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>Here you can see your currently added teams</p>
+    <p>Here you can see your currently added teams. To edit a team, just remove it and add it again.</p>
+
     <a href="{{ route('addTeam') }}">
         <button type="button" class="btn btn-primary">add new team</button>
     </a>
@@ -11,7 +12,6 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Name</th>
-				<th scope="col">School</th>
 				<th scope="col">Category</th>
 				<th scope="col">Member count</th>
 				<th scope="col">Max age</th>
@@ -23,7 +23,6 @@
 				<tr>
 					<th scope="row">{{ $loop->index + 1 }}</th>
 					<td>{{ $team->name }}</td>
-					<td>{{ $team->school_name }}</td>
 					<td>{{ $team->category }}</td>
 					<td>{{ $team->members_amount }}</td>
 					<td>{{ $team->age_oldest_member }}</td>

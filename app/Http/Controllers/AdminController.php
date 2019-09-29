@@ -48,4 +48,52 @@ class AdminController extends Controller
 
     }
 
+    public function addTeam($id){
+        $user = User::findOrFail($id);
+        return view('admin.addTeamAdmin', ['user' => $user]);
+    }
+
+    public function createTeam(Request $request){
+
+        // get the id's of all registered users
+        $ids = User::all()->pluck('id')->toArray();
+
+        // make sure the request is valid
+        $categories = ['rescue_basic', 'rescue_advanced', 'soccer', 'dancing'];
+        $validator = Validator::make($request->all(), [
+            'user_id' => ['required', Rule::in($ids)],
+            'name' => ['required', 'string', 'max:255'],
+            'category' => ['required', Rule::in($categories)],
+            'members_amount' => ['required', 'integer', 'max:4', 'min:1'],
+            'age_oldest_member' => ['required', 'integer', 'min:0'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(route('addTeamAdmin', [$request->user_id]))->withErrors($validator)->withInput();
+        }
+
+        $team = new Team();
+        $team->user_id = $request->user_id;
+        $team->name = $request->name;
+        $team->category = $request->category;
+        $team->members_amount = $request->members_amount;
+        $team->age_oldest_member = $request->age_oldest_member;
+        
+        $team->save();
+
+        // get all admins and send them an email
+        // $admins = User::where('type', User::ADMIN_TYPE)->get();
+        // foreach($admins as $admin){
+        //     Notification::route('mail', $admin->email)->notify(new newTeamAdmin($team));
+        // }
+
+        // // also send a confirmation email to the user
+        // $user = User::find($team->user_id);
+        // Notification::route('mail', $user->email)->notify(new newTeamUser($team));
+        
+        return redirect(route('userDetail', [$request->user_id]));
+
+    }
+
+
 }

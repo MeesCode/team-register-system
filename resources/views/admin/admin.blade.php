@@ -29,7 +29,13 @@
 						<form method="POST" action="{{ route('removeTeamAdmin') }}">
 							@csrf
 							<input type="hidden" name="id" value="{{ $team->id }}">
-							<button type="submit" onclick="return confirm('are you sure you want to delete this team?')" class="btn btn-danger btn-sm">
+							<button type="submit"  
+							data-toggle="tooltip" 
+							data-placement="top" 
+							title="Remove this team" 
+							onclick="return confirm('are you sure you want to delete this team?')" 
+							class="btn btn-danger btn-sm"
+							>
 								<i class="fas fa-trash-alt"></i>
 							</button>
 						</form>
@@ -62,8 +68,13 @@
 					<td>{{ $user->school_name }}</td>
 					<td>
 						<a href="{{ route('userDetail', [$user->id]) }}">
-							<button type="button" class="btn btn-primary btn-sm">
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Go to detail page">
 								<i class="fas fa-info-circle"></i>
+							</button>
+						</a>
+						<a href="{{ route('addTeamAdmin', [$user->id]) }}">
+							<button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Add a team">
+								<i class="fas fa-user-plus"></i>
 							</button>
 						</a>
 					</td>
