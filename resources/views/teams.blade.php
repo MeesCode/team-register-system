@@ -1,47 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <p>Here you can see your currently added teams</p>
     <a href="{{ route('addTeam') }}">
         <button type="button" class="btn btn-primary">add new team</button>
     </a>
 
-    @foreach ($teams as $team)
-    <div class="card mt-3">
-        <div class="card-header">
-            {{ $team->name }}
-            <form method="POST" class="float-right" action="{{ route('removeTeam') }}">
-                @csrf
-                <input type="hidden" name="id" value="{{ $team->id }}">
-                <button type="submit" class="btn btn-danger btn-sm">remove team</button>
-            </form>
-        </div>
+    <table class="table mt-3">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">School</th>
+				<th scope="col">Category</th>
+				<th scope="col">Member count</th>
+				<th scope="col">Max age</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($teams as $team)
+				<tr>
+					<th scope="row">{{ $loop->index + 1 }}</th>
+					<td>{{ $team->name }}</td>
+					<td>{{ $team->school_name }}</td>
+					<td>{{ $team->category }}</td>
+					<td>{{ $team->members_amount }}</td>
+					<td>{{ $team->age_oldest_member }}</td>
+					<td>
+						<form method="POST" action="{{ route('removeTeam') }}">
+							@csrf
+							<input type="hidden" name="id" value="{{ $team->id }}">
+							<button type="submit" onclick="return confirm('are you sure you want to delete this team?')" class="btn btn-danger btn-sm">remove team</button>
+						</form>
+					</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
 
-        <div class="card-body p-0">
-            <table class="table m-0">
-                <tbody>
-                    <tr>
-                        <th>Category</th>
-                        <td>{{ $team->category }}</td>
-                    </tr>
-                    <tr>
-                        <th>Amount of members</th>
-                        <td>{{ $team->members_amount }}</td>
-                    </tr>
-                    <tr>
-                        <th>Age oldest member</th>
-                        <td>{{ $team->age_oldest_member }}</td>
-                    </tr>
-                    <tr>
-                        <th>Created at</th>
-                        <td>{{ $team->created_at }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    @endforeach
-
-</div>
 @endsection
