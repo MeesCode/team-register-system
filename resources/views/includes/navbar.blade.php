@@ -31,14 +31,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/admin">Admin panel</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/overview">Overview</a>
+                        </li>
+
                     @endif
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/overview">Overview</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/teams">Teams</a>
+                        <a class="nav-link" href="/teams">My teams</a>
                     </li>
 
                     <li class="nav-item">

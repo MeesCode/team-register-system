@@ -12,16 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
-    return view('overview');
-});
+    return view('home');
+})->name('home');
 
 Auth::routes();
 
-Route::get('/overview', 'OverviewController@index')->middleware('auth')->name('overview');
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
 
 Route::get('/teams', 'TeamsController@index')->middleware('auth')->name('teams');
@@ -31,4 +26,6 @@ Route::post('/teams/remove', 'TeamsController@removeTeam')->middleware('auth')->
 
 Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
 Route::post('/admin/removeTeam', 'AdminController@removeTeam')->middleware('is_admin')->name('removeTeamAdmin');
+Route::get('/overview', 'AdminController@overview')->middleware('is_admin')->name('overview');
+Route::get('/user/{id}', 'AdminController@userDetail')->middleware('is_admin')->name('userDetail');
 

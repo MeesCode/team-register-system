@@ -21,7 +21,15 @@ class AdminController extends Controller
             $team->school_name = User::find($team->user_id)->school_name;
         }
         
-        return view('admin', ['teams' => $teams, 'users' => $users]);
+        return view('admin.admin', ['teams' => $teams, 'users' => $users]);
+    }
+
+    public function userDetail($id)
+    {
+        $user = User::findOrFail($id);
+        $teams = Team::where('user_id', $id)->get();
+        
+        return view('admin.userDetail', ['teams' => $teams, 'user' => $user]);
     }
 
     public function removeTeam(Request $request){
@@ -31,6 +39,12 @@ class AdminController extends Controller
         $team->delete();
 
         return redirect(route('admin'));
+
+    }
+
+    public function overview(Request $request){
+        return view('admin.overview');
+
 
     }
 
