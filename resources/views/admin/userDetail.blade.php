@@ -12,9 +12,6 @@
 		@csrf
 		<input type="hidden" name="id" value="{{ $user->id }}">
 		<button type="submit"  
-		data-toggle="tooltip" 
-		data-placement="top" 
-		title="Remove this user" 
 		onclick="return confirm('are you sure you want to delete this user and all their teams?')" 
 		class="btn btn-danger"
 		>

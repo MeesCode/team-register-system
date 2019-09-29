@@ -2,6 +2,16 @@
 
 @section('content')
 
+    <form method="POST" action="{{ route('deleteProfile') }}" class="mt-3 mb-3">
+		@csrf
+		<button type="submit"  
+		onclick="return confirm('are you sure you want to delete your account and all your teams?')" 
+		class="btn btn-danger"
+		>
+			delete my account
+		</button>
+	</form>
+
     <table class="table mt-3">
         <tbody>
             <tr>

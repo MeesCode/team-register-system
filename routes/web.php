@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
+Route::post('/profile/remove', 'ProfileController@deleteProfile')->middleware('auth')->name('deleteProfile');
 
 Route::get('/teams', 'TeamsController@index')->middleware('auth')->name('teams');
 Route::get('/teams/add', 'TeamsController@addIndex')->middleware('auth')->name('addTeam');
