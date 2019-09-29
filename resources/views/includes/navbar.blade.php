@@ -29,21 +29,21 @@
 
                     @if (Auth::user()->type == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin">Admin panel</a>
+                            <a class="nav-link" href="{{ route('admin') }}">Admin panel</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/overview">Overview</a>
+                            <a class="nav-link" href="{{ route('overview') }}">Overview</a>
                         </li>
 
                     @endif
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/teams">My teams</a>
+                        <a class="nav-link" href="{{ route('teams') }}">My teams</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
+                        <a class="nav-link" href="{{ route('profile') }}">Profile</a>
                     </li>
 
                     <li class="nav-item dropdown">

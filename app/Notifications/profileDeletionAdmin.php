@@ -42,7 +42,8 @@ class profileDeletionAdmin extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('User '.$this->user->name.' ('.$this->user->name.') from: "'.$this->user->school_name.'" just deleted their account.')
+            ->subject('User acount deletion')
+            ->line('User '.$this->user->name.' ('.$this->user->name.') from: "'.$this->user->school_name.'" just deleted their account.')
             ->line('It might be a good idea to contact them, just in case.');
     }
 
