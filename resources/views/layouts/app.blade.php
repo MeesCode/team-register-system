@@ -9,7 +9,7 @@
         @include('includes.navbar')
 
         <main class="py-4">
-            <div class="container card p-5">
+            <div class="container card p-3">
                 @yield('content')  
             </div>
         </main>
