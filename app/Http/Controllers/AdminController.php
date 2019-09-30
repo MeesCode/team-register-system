@@ -46,6 +46,42 @@ class AdminController extends Controller
         return view('admin.overview');
     }
 
+    public function databaseDumpUsers(){
+        $users = User::get();
+        $csvExporter = new \Laracsv\Export();
+        return $csvExporter->build($users, [
+            'id',
+            'name', 
+            'email', 
+            'email_verified_at', 
+            'password', 
+            'remember_token', 
+            'created_at', 
+            'updated_at', 
+            'phone_number', 
+            'school_name', 
+            'school_place', 
+            'school_address', 
+            'school_postal_code', 
+            'type'
+            ])->download();
+    }
+
+    public function databaseDumpTeams(){
+        $teams = Team::get();
+        $csvExporter = new \Laracsv\Export();
+        return $csvExporter->build($teams, [
+            'id', 
+            'user_id', 
+            'name', 
+            'category', 
+            'members_amount', 
+            'age_oldest_member', 
+            'created_at', 
+            'updated_at'
+        ])->download();
+    }
+
     public function addTeam($id){
         $user = User::findOrFail($id);
         return view('admin.addTeamAdmin', ['user' => $user]);
@@ -85,17 +121,7 @@ class AdminController extends Controller
         
         $team->save();
 
-        // disable email notifications on admin actions
-
-        // get all admins and send them an email
-        // $admins = User::where('type', User::ADMIN_TYPE)->get();
-        // foreach($admins as $admin){
-        //     Notification::route('mail', $admin->email)->notify(new newTeamAdmin($team));
-        // }
-
-        // // also send a confirmation email to the user
-        // $user = User::find($team->user_id);
-        // Notification::route('mail', $user->email)->notify(new newTeamUser($team));
+        // no email notifications on admin actions
         
         return redirect(route('userDetail', [$request->user_id]));
 

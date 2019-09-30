@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+
+    public function getTableColumns() {
+        return $this
+            ->getConnection()
+            ->getSchemaBuilder()
+            ->getColumnListing($this->getTable());
+    }
+    
     /**
      * The attributes that are mass assignable.
      *

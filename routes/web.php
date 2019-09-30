@@ -32,5 +32,7 @@ Route::get('/admin/user/{id}', 'AdminController@userDetail')->middleware('is_adm
 Route::get('/admin/teams/add/{id}', 'AdminController@addTeam')->middleware('is_admin')->name('addTeamAdmin');
 Route::post('/admin/teams/add', 'AdminController@createTeam')->middleware('is_admin')->name('createTeamAdmin');
 Route::post('/admin/user/delete', 'AdminController@deleteUser')->middleware('is_admin')->name('deleteUser');
+Route::get('/admin/overview/databasedumpuses', 'AdminController@databaseDumpUsers')->middleware('is_admin')->name('databaseDumpUsers');
+Route::get('/admin/overview/databasedumpteams', 'AdminController@databaseDumpTeams')->middleware('is_admin')->name('databaseDumpTeams');
 
 
