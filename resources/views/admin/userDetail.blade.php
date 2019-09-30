@@ -65,22 +65,22 @@
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
-				<th scope="col">#</th>
+				<th class="d-none d-sm-table-cell" scope="col">#</th>
 				<th scope="col">Name</th>
 				<th scope="col">Category</th>
-				<th scope="col">Member count</th>
-				<th scope="col">Max age</th>
+				<th class="d-none d-sm-table-cell" scope="col">Member count</th>
+				<th class="d-none d-sm-table-cell" scope="col">Max age</th>
 				<th scope="col">Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($teams as $team)
 				<tr>
-					<th scope="row">{{ $loop->index + 1 }}</th>
+					<th class="d-none d-sm-table-cell" scope="row">{{ $loop->index + 1 }}</th>
 					<td>{{ $team->name }}</td>
 					<td>{{ $team->category }}</td>
-					<td>{{ $team->members_amount }}</td>
-					<td>{{ $team->age_oldest_member }}</td>
+					<td class="d-none d-sm-table-cell">{{ $team->members_amount }}</td>
+					<td class="d-none d-sm-table-cell">{{ $team->age_oldest_member }}</td>
 					<td>
 						<form method="POST" action="{{ route('removeTeamAdmin') }}">
 							@csrf
