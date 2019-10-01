@@ -45,10 +45,7 @@ class AdminController extends Controller
     }
 
     public function overview(Request $request){
-
-        Storage::put(storage_path('logs/admin.log'), 'test');
-        $logs = Storage::get(storage_path('logs/admin.log'));
-        return view('admin.overview', ['logs' => $logs]);
+        return view('admin.overview');
     }
 
     public function databaseDumpUsers(){
