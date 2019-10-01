@@ -8,6 +8,8 @@ use App\Team;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -43,10 +45,18 @@ class AdminController extends Controller
     }
 
     public function overview(Request $request){
-        return view('admin.overview');
+
+        Storage::put(storage_path('logs/admin.log'), 'test');
+        $logs = Storage::get(storage_path('logs/admin.log'));
+        return view('admin.overview', ['logs' => $logs]);
     }
 
     public function databaseDumpUsers(){
+        Log::info('The user database table has been exported by an admin', [
+            'name' => Auth::user()->name, 
+            'email' => Auth::user()->email,
+        ]);
+
         $users = User::get();
         $csvExporter = new \Laracsv\Export();
         return $csvExporter->build($users, [
@@ -68,6 +78,11 @@ class AdminController extends Controller
     }
 
     public function databaseDumpTeams(){
+        Log::info('The team database table has been exported by an admin', [
+            'name' => Auth::user()->name, 
+            'email' => Auth::user()->email,
+        ]);
+
         $teams = Team::get();
         $csvExporter = new \Laracsv\Export();
         return $csvExporter->build($teams, [
@@ -95,6 +110,8 @@ class AdminController extends Controller
 
     public function createTeam(Request $request){
 
+        $user = User::findOrFail($request->user_id);
+
         // get the id's of all registered users
         $ids = User::all()->pluck('id')->toArray();
 
@@ -120,6 +137,12 @@ class AdminController extends Controller
         $team->age_oldest_member = $request->age_oldest_member;
         
         $team->save();
+
+        Log::channel('admin')->info('The team has been added by an admin', [
+            'admin email' => Auth::user()->email,
+            'user email' => $user->email,
+            'team name' => $team->name,
+        ]);
 
         // no email notifications on admin actions
         

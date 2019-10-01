@@ -10,4 +10,8 @@
         <button type="button" class="btn btn-primary">Download database dump of the teams</button>
     </a>
 
+    <p class="mt-3">logs:</p>
+
+    <iframe src="{{ route('logViewer') }}" width="100%" height="800px">Browser not compatible.</iframe>
+
 @endsection

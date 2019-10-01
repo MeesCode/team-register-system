@@ -34,6 +34,12 @@ return [
     */
 
     'channels' => [
+        'admin' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/admin.log'),
+            'level' => 'debug',
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['daily'],

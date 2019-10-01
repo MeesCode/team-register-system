@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\profileDeletionAdmin;
 use App\Notifications\profileDeletionUser;
-
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -30,9 +30,16 @@ class ProfileController extends Controller
         // also send a confirmation email to the user
         Notification::route('mail', $user->email)->notify(new profileDeletionUser());
 
+        Log::channel('admin')->info('A user has deleted their profile', [
+            'username' => $user->name, 
+            'email' => $user->email, 
+            'school' => $user->school_name,
+        ]);
+
         Auth::logout();
 
         $user->delete();
+
 
         return redirect(route('home'));
     }

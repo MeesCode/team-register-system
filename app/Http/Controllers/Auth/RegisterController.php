@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Notifications\userRegistrationAdmin;
 use App\Notifications\userRegistrationUser;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -72,25 +73,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        // send the user a confirmation email
-        $user = (object)[];
-        $user->name = $data['name'];
-        $user->school_name = $data['school_name'];
-        $user->email = $data['email'];
-        $user->phone_number = $data['phone_number'];
-        $user->school_place = $data['school_place'];
-        $user->school_address = $data['school_address'];
-        $user->school_postal_code = $data['school_postal_code'];
-
-        Notification::route('mail', $user->email)->notify(new userRegistrationUser());
-
-        // get all admins and send them an email
-        $admins = User::where('type', User::ADMIN_TYPE)->get();
-        foreach($admins as $admin){
-            Notification::route('mail', $admin->email)->notify(new userRegistrationAdmin($user));
-        }
-
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
@@ -101,5 +84,20 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'type' => User::DEFAULT_TYPE, 
         ]);
+
+        Log::info('A new user has been registered', [
+            'name' => $user->name, 
+            'email' => $user->email
+        ]);
+
+        Notification::route('mail', $user->email)->notify(new userRegistrationUser());
+
+        // get all admins and send them an email
+        $admins = User::where('type', User::ADMIN_TYPE)->get();
+        foreach($admins as $admin){
+            Notification::route('mail', $admin->email)->notify(new userRegistrationAdmin($user));
+        }
+
+        return $user;
     }
 }

@@ -17,14 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// user profile
 Route::get('/profile', 'ProfileController@index')->middleware('auth')->name('profile');
 Route::post('/profile/remove', 'ProfileController@deleteProfile')->middleware('auth')->name('deleteProfile');
 
+// teams
 Route::get('/teams', 'TeamsController@index')->middleware('auth')->name('teams');
 Route::get('/teams/add', 'TeamsController@addIndex')->middleware('auth')->name('addTeam');
 Route::post('/teams/add', 'TeamsController@createTeam')->middleware('auth')->name('createTeam');
 Route::post('/teams/remove', 'TeamsController@removeTeam')->middleware('auth')->name('removeTeam');
 
+// admin stuff
 Route::get('/admin', 'AdminController@index')->middleware('is_admin')->name('admin');
 Route::post('/admin/removeTeam', 'AdminController@removeTeam')->middleware('is_admin')->name('removeTeamAdmin');
 Route::get('/admin/overview', 'AdminController@overview')->middleware('is_admin')->name('overview');
@@ -34,5 +37,8 @@ Route::post('/admin/teams/add', 'AdminController@createTeam')->middleware('is_ad
 Route::post('/admin/user/delete', 'AdminController@deleteUser')->middleware('is_admin')->name('deleteUser');
 Route::get('/admin/overview/databasedumpuses', 'AdminController@databaseDumpUsers')->middleware('is_admin')->name('databaseDumpUsers');
 Route::get('/admin/overview/databasedumpteams', 'AdminController@databaseDumpTeams')->middleware('is_admin')->name('databaseDumpTeams');
+
+// logging
+Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('is_admin')->name('logViewer');
 
 

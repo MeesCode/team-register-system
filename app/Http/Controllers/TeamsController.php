@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 use App\Notifications\newTeamAdmin;
 use App\Notifications\newTeamUser;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
 
 class TeamsController extends Controller
 {
@@ -48,6 +49,12 @@ class TeamsController extends Controller
         
         $team->save();
 
+        Log::channel('admin')->info('A new team has been created by a user', [
+            'username' => Auth::user()->name, 
+            'email' => Auth::user()->email, 
+            'team name' => $team->name, 
+        ]);
+
         // get all admins and send them an email
         $admins = User::where('type', User::ADMIN_TYPE)->get();
         foreach($admins as $admin){
@@ -72,6 +79,12 @@ class TeamsController extends Controller
         }
 
         $team->delete();
+
+        Log::channel('admin')->info('A team has been deleted by a user', [
+            'username' => Auth::user()->name, 
+            'email' => Auth::user()->email, 
+            'team name' => $team->name
+        ]);
 
         return redirect(route('teams'));
 
