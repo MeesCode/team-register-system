@@ -1,13 +1,9 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    {{ trans_choice('custom.test', 1, {'name': 'mees', 'com': 'HappyFlow'}) }}
                 </div>
             </div>
         </div>

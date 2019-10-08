@@ -37123,32 +37123,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(
+                _vm.trans_choice("custom.test", 1, {
+                  name: "mees",
+                  com: "HappyFlow"
+                })
+              ) +
+              "\n            "
+          )
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49295,9 +49289,12 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _localization_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localization.js */ "./resources/js/localization.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49317,6 +49314,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+
+Vue.use(_localization_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49424,6 +49423,163 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/localization.js":
+/*!**************************************!*\
+  !*** ./resources/js/localization.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue) {
+    Vue.prototype.__ = function (term, variables) {
+      var result = window.localization[term]; // fill in the variables
+
+      result = fillVariables(result, variables);
+      return result;
+    };
+
+    Vue.prototype.trans = function (term, variables) {
+      return __(term, variables);
+    };
+
+    Vue.prototype.trans_choice = function (term, amount) {
+      var variables = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var result = window.localization[term]; // get the correct plurality
+
+      result = getSubstring(result, amount); // fill in the variables
+
+      result = fillVariables(result, variables);
+      return result;
+    };
+
+    function getSubstring(result, amount) {
+      var substr = result.split('|');
+      var setAmount = /^\s*(?:{\s*\d+\s*})|(?:\[(?:\s*\d+\s*|\s*\*\s*),(?:\s*\d+\s*|\s*\*\s*)\])/; // case 1 there is no more than one substring, always return the only one available
+
+      if (substr.length == 1) {
+        return substr[0];
+      } // case 2 there are 2 substrings without set amounts, return either singular or plural
+
+
+      if (substr.length == 2 && !setAmount.test(substr[0]) && !setAmount.test(substr[1])) {
+        if (amount <= 1) {
+          return substr[0];
+        }
+
+        return substr[1];
+      } // case 3 all substrings have a defined amount
+      // loop over all substring until you find one that fits
+
+
+      var singleAmount = /^\s*{\s*(\d+)\s*}/;
+      var rangeAmount = /^\s*\[\s*(\d+|\*)\s*,\s*(\d+|\*)\s*\]/;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = substr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var str = _step.value;
+          var single = singleAmount.exec(str);
+          var range = rangeAmount.exec(str);
+
+          var _returnString = str.replace(setAmount, '');
+
+          if (single && amount == single[1]) {
+            return _returnString;
+          }
+
+          if (range && range.length == 3 && (range[1] == '*' || range[1] <= amount) && (range[2] == '*' || range[2] >= amount)) {
+            return _returnString;
+          }
+        } // fallback, return the first substring but sanitized
+
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      var returnString = substr[0].replace(setAmount, '');
+      return returnString;
+    }
+
+    function fillVariables(result, variables) {
+      // iterate over things to be replaced
+      for (var _i = 0, _Object$entries = Object.entries(variables); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            k = _Object$entries$_i[0],
+            v = _Object$entries$_i[1];
+
+        // find the index of the thing to be repaced
+        var index = result.toLowerCase().search(':' + k.toLowerCase()); // not found, so go to next term
+
+        if (index == -1) {
+          continue;
+        } // get the representation of the variable in the locale file
+
+
+        var slice = result.slice(index + 1, k.length + index + 1); // if it's strictly uppercase, replace with uppercase variant
+
+        if (isUpperCase(slice)) {
+          result = result.replaceAll(':' + slice, v.toUpperCase());
+          continue;
+        } // if it's strictly capitalized, replace with capitalized variant
+
+
+        if (isCapitalized(slice)) {
+          result = result.replaceAll(':' + slice, v.capitalize());
+          continue;
+        } // if it's neither, just replace the variable directly
+
+
+        result = result.replaceAll(':' + slice, v);
+      }
+
+      return result;
+    }
+
+    String.prototype.replaceAll = function (search, replacement) {
+      var target = this;
+      return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
+    String.prototype.capitalize = function () {
+      return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+    };
+
+    function isUpperCase(str) {
+      return str === str.toUpperCase();
+    }
+
+    function isCapitalized(str) {
+      return str === str.capitalize();
+    }
+  }
+});
 
 /***/ }),
 

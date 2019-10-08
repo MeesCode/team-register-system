@@ -41,4 +41,30 @@ Route::get('/admin/overview/databasedumpteams', 'AdminController@databaseDumpTea
 // logging
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('is_admin')->name('logViewer');
 
+// Localization
+Route::get('/js/lang.js', function () {
+    // $strings = Cache::rememberForever('lang.js', function () {
+        $lang = config('app.locale');
+
+        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
+        $strings = [];
+
+        foreach ($files as $file) {
+            foreach (require $file as $key => $term) {
+                $name = basename($file, '.php');
+                $strings[$name.'.'.$key] = $term;
+            }
+        }
+
+        // return $strings;
+    // });
+
+    header('Content-Type: text/javascript');
+    echo ('{window.localization = window.localization || {};'
+    .'const localization = ' . json_encode($strings) . ';'
+    .'let key;'
+    .'for (key in localization) window.localization[key] = localization[key];};');
+    exit();
+})->name('assets.lang');
+
 

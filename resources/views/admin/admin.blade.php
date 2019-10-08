@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<example-component></example-component>
-
 	<p>Howdy admin, here are all teams</p>
 
 	<table class="table">
