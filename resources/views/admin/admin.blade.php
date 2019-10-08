@@ -2,18 +2,20 @@
 
 @section('content')
 
+	<example-component></example-component>
+
 	<p>Howdy admin, here are all teams</p>
 
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
 				<th class="d-none d-sm-table-cell" scope="col">#</th>
-				<th scope="col">Name</th>
+				<th scope="col">{{ __('custom.name') }}</th>
 				<th scope="col">School</th>
-				<th class="d-none d-sm-table-cell" scope="col">Category</th>
-				<th class="d-none d-sm-table-cell" scope="col">Member count</th>
-				<th class="d-none d-sm-table-cell" scope="col">Max age</th>
-				<th scope="col">Action</th>
+				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.category') }}</th>
+				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.members_amount') }}</th>
+				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.age_oldest_member') }}</th>
+				<th scope="col">{{ __('custom.action') }}</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -8,19 +8,10 @@
     <title>RoboCupJunior registration tool</title>
     <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-    </script>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>

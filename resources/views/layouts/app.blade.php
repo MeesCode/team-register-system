@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-@include('includes.head')
+    @include('includes.head')
 
-<body>
-    <div id="app">
-        
-        @include('includes.navbar')
+    <body>
+        <div id="app">
+            
+            @include('includes.navbar')
 
-        <main class="py-4">
-            <div class="container card p-3">
-                @yield('content')  
-            </div>
-        </main>
+            <main class="py-4">
+                <div class="container card p-3">
+                    @yield('content')  
+                </div>
+            </main>
 
-        @include('includes.footer')
-    </div>
-</body>
+            @include('includes.footer')
+        </div>
+    </body>
+
+    @include('includes.scripts')
+
 </html>
