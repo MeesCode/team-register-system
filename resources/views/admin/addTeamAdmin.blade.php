@@ -6,7 +6,7 @@
         @csrf
 
         <div class="form-group row">
-            <label for="user_id" class="col-md-4 col-form-label text-md-right">School (coach)</label>
+            <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('custom.school') }} ({{ __('custom.coach') }})</label>
 
             <div class="col-md-6">
                 <input type="text" class="form-control @error('user_id') is-invalid @enderror" value="{{ $user->school_name}} ({{ $user->name }})" required disabled>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="name" class="col-md-4 col-form-label text-md-right">Team name</label>
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('custom.team_name') }}</label>
 
             <div class="col-md-6">
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
@@ -40,10 +40,10 @@
 
             <div class="col-md-6">
                 <select id="category" type="text" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('category') }}" required autocomplete="category">
-                    <option value="dancing">Dancing</option>
-                    <option value="rescue_basic">Rescue basic</option>
-                    <option value="rescue_advanced">Rescue advanced</option>
-                    <option value="soccer">Soccer</option>
+                    <option value="dancing">{{ __('custom.dancing') }}</option>
+                    <option value="rescue_basic">{{ __('custom.rescue_basic') }}</option>
+                    <option value="rescue_advanced">{{ __('custom.rescue') }}</option>
+                    <option value="soccer">{{ __('custom.soccer') }}</option>
                 </select>
 
                 @error('category')
@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="members_amount" class="col-md-4 col-form-label text-md-right">Amount of members</label>
+            <label for="members_amount" class="col-md-4 col-form-label text-md-right">{{ __('custom.amount_of_members') }}</label>
 
             <div class="col-md-6">
                 <input id="members_amount" type="number" max="4" min="1" class="form-control @error('members_amount') is-invalid @enderror" name="members_amount" value="{{ old('members_amount') }}" required autocomplete="members_amount">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="age_oldest_member" class="col-md-4 col-form-label text-md-right">Age oldest team member</label>
+            <label for="age_oldest_member" class="col-md-4 col-form-label text-md-right">{{ __('custom.age_oldest_member') }}</label>
 
             <div class="col-md-6">
                 <input id="age_oldest_member" type="number" min="1" class="form-control @error('age_oldest_member') is-invalid @enderror" name="age_oldest_member" value="{{ old('age_oldest_member') }}" required autocomplete="age_oldest_member">
@@ -84,7 +84,7 @@
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">Add team</button>
+                <button type="submit" class="btn btn-primary">{{ __('custom.add_team') }}</button>
             </div>
         </div>
     </form>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    Welcome to the team registration tool for the RoboCupJunior
+    {{ __('custom.home_1') }}
 @endsection

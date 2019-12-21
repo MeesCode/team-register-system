@@ -18,32 +18,32 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('custom.login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('custom.register') }}</a>
                         </li>
                     @endif
                 @else
 
                     @if (Auth::user()->type == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin') }}">Admin panel</a>
+                            <a class="nav-link" href="{{ route('admin') }}">{{ __('custom.admin_panel') }}</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('overview') }}">Overview</a>
+                            <a class="nav-link" href="{{ route('overview') }}">{{ __('custom.overview') }}</a>
                         </li>
 
                     @endif
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('teams') }}">My teams</a>
+                        <a class="nav-link" href="{{ route('teams') }}">{{ __('custom.my_teams') }}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile') }}">Profile</a>
+                        <a class="nav-link" href="{{ route('profile') }}">{{ __('custom.profile') }}</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('custom.logout') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>Here you can see your currently added teams. To edit a team, just remove it and add it again.</p>
+    <p>{{ __('custom.my_teams_1') }}</p>
 
     <a href="{{ route('addTeam') }}">
-        <button type="button" class="btn btn-primary">add new team</button>
+        <button type="button" class="btn btn-primary">{{ __('custom.add_team') }}</button>
     </a>
 
     <table class="table mt-3">
 		<thead class="thead-light">
 			<tr>
 				<th class="d-none d-sm-table-cell" scope="col">#</th>
-				<th scope="col">Name</th>
-				<th scope="col">Category</th>
-				<th class="d-none d-sm-table-cell" scope="col">Member count</th>
-				<th class="d-none d-sm-table-cell" scope="col">Max age</th>
-				<th scope="col">Action</th>
+				<th scope="col">{{ __('custom.name') }}</th>
+				<th scope="col">{{ __('custom.category') }}</th>
+				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.members_amount') }}</th>
+				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.age_oldest_member') }}</th>
+				<th scope="col">{{ __('custom.action') }}</th>
 			</tr>
 		</thead>
 		<tbody>

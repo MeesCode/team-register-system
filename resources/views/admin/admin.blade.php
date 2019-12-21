@@ -2,14 +2,14 @@
 
 @section('content')
 
-	<p>Howdy admin, here are all teams</p>
+	<p>{{ __('custom.admin_panel_1') }}</p>
 
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
 				<th class="d-none d-sm-table-cell" scope="col">#</th>
 				<th scope="col">{{ __('custom.name') }}</th>
-				<th scope="col">School</th>
+				<th scope="col">{{ __('custom.school')}}</th>
 				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.category') }}</th>
 				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.members_amount') }}</th>
 				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.age_oldest_member') }}</th>
@@ -46,17 +46,17 @@
 	</table>
 	
 
-	<p>And here are all the users</p>
+	<p>{{ __('custom.admin_panel_2') }}</p>
 
 
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
 				<th class="d-none d-sm-table-cell" scope="col">#</th>
-				<th scope="col">Name</th>
-				<th class="d-none d-sm-table-cell" scope="col">Email</th>
-				<th scope="col">School</th>
-				<th scope="col">Details</th>
+				<th scope="col">{{ __('custom.name') }}</th>
+				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.email') }}</th>
+				<th scope="col">{{ __('custom.school') }}</th>
+				<th scope="col">{{ __('custom.details') }}</th>
 			</tr>
 		</thead>
 		<tbody>
