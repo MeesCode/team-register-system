@@ -10,7 +10,7 @@ return [
     'age_oldest_member' => 'Hoogste leeftijd',
     'action' => 'Actie',
     'details' => 'Details',
-    'email' => 'Email',
+    'email' => 'Email adres',
     'admin_panel' => 'Administatie paneel',
     'my_teams' => 'Mijn Teams',
     'profile' => 'Profiel',

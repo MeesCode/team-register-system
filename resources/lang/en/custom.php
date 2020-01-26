@@ -10,7 +10,7 @@ return [
     'age_oldest_member' => 'Max age',
     'action' => 'Action',
     'details' => 'Details',
-    'email' => 'Email',
+    'email' => 'Email address',
     'admin_panel' => 'Admin panel',
     'my_teams' => 'My Teams',
     'profile' => 'Profile',
