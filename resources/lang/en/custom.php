@@ -40,6 +40,9 @@ return [
     'forgot_password' => 'i forgot my password',
     'groeneveld' => 'Groeneveld',
 
+    'add_new_team' => 'Add a new team',
+    'delete_user_account' => 'Delete user account',
+
     // longer texts
     'admin_panel_1' => 'Here you will find all registered teams',
     'admin_panel_2' => 'And here are the users',

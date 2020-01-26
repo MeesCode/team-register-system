@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // admin
         User::create([
-            'name' => 'RoboCupJunior',
-            'email' => 'robocup@junior.nl',
-            'phone_number' => '1234567890',
-            'school_name' => 'TU Delft',
-            'school_place' => 'Delft',
-            'school_address' => 'Delft 101',
-            'school_postal_code' => '1234AB',
+            'name' => env('MAIL_FROM_NAME'),
+            'email' => env('MAIL_FROM_ADDRESS'),
+            'phone_number' => 'nvt',
+            'school_name' => 'nvt',
+            'school_place' => 'nvt',
+            'school_address' => 'nvt',
+            'school_postal_code' => 'nvt',
             'password' => Hash::make('secret'),
             'type' => User::ADMIN_TYPE, 
         ]);

@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
         $teams = Team::all();
         $users = User::all();
@@ -22,8 +23,32 @@ class AdminController extends Controller
         foreach($teams as $team){
             $team->school_name = User::find($team->user_id)->school_name;
         }
+
+        $teams = AdminController::filter_teams($request, $teams);
         
-        return view('admin.admin', ['teams' => $teams, 'users' => $users]);
+        $school_list = User::select('school_name')->distinct()->get();
+        
+        return view('admin.admin', ['teams' => $teams, 'users' => $users, 'school_list' => $school_list]);
+    }
+
+    private function filter_teams(Request $request, $teams)
+    {
+        $school = $request->query('school', 'any');
+        $category = $request->query('category', 'any');
+
+        if($school != 'any'){
+            $teams = $teams->filter(function($team) use ($school){
+                return $team->school_name == $school;
+            });
+        }
+
+        if($category != 'any'){
+            $teams = $teams->filter(function($team) use ($category){
+                return $team->category == $category;
+            });
+        }
+        
+        return $teams;
     }
 
     public function userDetail($id)
@@ -113,7 +138,7 @@ class AdminController extends Controller
         $ids = User::all()->pluck('id')->toArray();
 
         // make sure the request is valid
-        $categories = ['rescue_basic', 'rescue_advanced', 'soccer', 'dancing'];
+        $categories = ['rescue_basic', 'rescue', 'soccer', 'dancing', 'groeneveld'];
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', Rule::in($ids)],
             'name' => ['required', 'string', 'max:255'],

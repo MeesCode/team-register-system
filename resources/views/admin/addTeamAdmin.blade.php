@@ -36,14 +36,15 @@
         </div>
 
         <div class="form-group row">
-            <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
+            <label for="category" class="col-md-4 col-form-label text-md-right">{{__('custom.category')}}</label>
 
             <div class="col-md-6">
                 <select id="category" type="text" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('category') }}" required autocomplete="category">
                     <option value="dancing">{{ __('custom.dancing') }}</option>
                     <option value="rescue_basic">{{ __('custom.rescue_basic') }}</option>
-                    <option value="rescue_advanced">{{ __('custom.rescue') }}</option>
+                    <option value="rescue">{{ __('custom.rescue') }}</option>
                     <option value="soccer">{{ __('custom.soccer') }}</option>
+                    <option value="groeneveld">{{ __('custom.groeneveld') }}</option>
                 </select>
 
                 @error('category')

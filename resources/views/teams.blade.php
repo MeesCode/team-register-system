@@ -23,7 +23,7 @@
 				<tr>
 					<th class="d-none d-sm-table-cell" scope="row">{{ $loop->index + 1 }}</th>
 					<td>{{ $team->name }}</td>
-					<td>{{ $team->category }}</td>
+					<td>{{ __('custom.'.$team->category) }}</td>
 					<td class="d-none d-sm-table-cell">{{ $team->members_amount }}</td>
 					<td class="d-none d-sm-table-cell">{{ $team->age_oldest_member }}</td>
 					<td>

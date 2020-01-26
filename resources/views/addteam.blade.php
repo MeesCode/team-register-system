@@ -25,7 +25,7 @@
                 <select id="category" type="text" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('category') }}" required autocomplete="category">
                     <option value="dancing">{{ __('custom.dancing') }}</option>
                     <option value="rescue_basic">{{ __('custom.rescue_basic') }}</option>
-                    <option value="rescue_advanced">{{ __('custom.rescue') }}</option>
+                    <option value="rescue">{{ __('custom.rescue') }}</option>
                     <option value="soccer">{{ __('custom.soccer') }}</option>
                     <option value="groeneveld">{{ __('custom.groeneveld') }}</option>
                 </select>

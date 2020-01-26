@@ -28,7 +28,7 @@ class TeamsController extends Controller
 
     public function createTeam(Request $request){
         // make sure the request is valid
-        $categories = ['rescue_basic', 'rescue_advanced', 'soccer', 'dancing', 'groeneveld'];
+        $categories = ['rescue_basic', 'rescue', 'soccer', 'dancing', 'groeneveld'];
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required', Rule::in($categories)],

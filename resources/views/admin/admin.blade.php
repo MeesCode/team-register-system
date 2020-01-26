@@ -4,6 +4,37 @@
 
 	<p>{{ __('custom.admin_panel_1') }}</p>
 
+	<form method="GET" action="{{ route('admin') }}">
+		@csrf
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<label class="input-group-text">filter teams</label>
+			</div>
+			<select class="custom-select" id="category" type="text" name="category">
+				<option selected value="any">{{__("custom.category")}}...</option>
+				<option value="dancing">{{ __('custom.dancing') }}</option>
+				<option value="rescue_basic">{{ __('custom.rescue_basic') }}</option>
+				<option value="rescue">{{ __('custom.rescue') }}</option>
+				<option value="soccer">{{ __('custom.soccer') }}</option>
+				<option value="groeneveld">{{ __('custom.groeneveld') }}</option>
+			</select>
+			<select class="custom-select" type="text" name="school">
+				<option selected value="any">{{__("custom.school")}}...</option>
+				@foreach ($school_list as $name)
+						<option value="{{$name->school_name}}">{{$name->school_name}}</option>
+				@endforeach
+			</select>
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="submit">Go</button>
+					<button onclick="javascript:window.location = window.location.href.split('?')[0];" class="btn btn-outline-secondary" type="button">
+						<span class="text-danger">
+							Reset
+						<span>
+					</button>
+			</div>
+		</div>
+	</form>
+
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
@@ -22,7 +53,7 @@
 					<th class="d-none d-sm-table-cell" scope="row">{{ $loop->index + 1 }}</th>
 					<td>{{ $team->name }}</td>
 					<td>{{ $team->school_name }}</td>
-					<td class="d-none d-sm-table-cell">{{ $team->category }}</td>
+					<td class="d-none d-sm-table-cell">{{ __('custom.'.$team->category) }}</td>
 					<td class="d-none d-sm-table-cell">{{ $team->members_amount }}</td>
 					<td class="d-none d-sm-table-cell">{{ $team->age_oldest_member }}</td>
 					<td>

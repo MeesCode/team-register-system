@@ -40,6 +40,9 @@ return [
     'forgot_password' => 'wachtwoord vergeten',
     'groeneveld' => 'Groeneveld',
 
+    'add_new_team' => 'Voeg nieuw team toe',
+    'delete_user_account' => 'Verwijder gebruikersaccount',
+
     // longer texts
     'admin_panel_1' => 'Hieronder vind je alle ingeschreven teams',
     'admin_panel_2' => 'En hier zijn de gebruikers',

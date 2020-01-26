@@ -3,7 +3,7 @@
 @section('content')
 
 	<a href="{{ route('addTeamAdmin', [$user->id]) }}">
-        <button type="button" class="btn btn-primary">add new team</button>
+        <button type="button" class="btn btn-primary">{{__('custom.add_new_team')}}</button>
     </a>
 
 	<form method="POST" action="{{ route('deleteUser') }}" class="mt-3 mb-3">
@@ -13,7 +13,7 @@
 		onclick="return confirm('are you sure you want to delete this user and all their teams?')" 
 		class="btn btn-danger"
 		>
-			remove this user
+			{{__("custom.delete_user_account")}}
 		</button>
 	</form>
 
