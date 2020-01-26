@@ -56,7 +56,7 @@
 				<th scope="col">{{ __('custom.name') }}</th>
 				<th class="d-none d-sm-table-cell" scope="col">{{ __('custom.email') }}</th>
 				<th scope="col">{{ __('custom.school') }}</th>
-				<th scope="col">{{ __('custom.details') }}</th>
+				<th scope="col">{{ __('custom.action') }}</th>
 			</tr>
 		</thead>
 		<tbody>

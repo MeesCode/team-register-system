@@ -32,6 +32,13 @@ return [
     'postal_code' => 'Postal code',
     'registered_at' => 'Registered at',
     
+    'full_name_coach' => 'Full name coach',
+    'school' => 'school',
+    'password' => 'password',
+    'confirm_password' => 'Confirm password',
+    'remember_me' => 'remember me',
+    'forgot_password' => 'i forgot my password',
+    'groeneveld' => 'Groeneveld',
 
     // longer texts
     'admin_panel_1' => 'Here you will find all registered teams',
@@ -40,10 +47,13 @@ return [
     'overview_button_1' => 'Download a csv file with all registered users',
     'overview_button_2' => 'Download a csv file with all registered teams',
 
-    'my_teams_1' => 'Here you can view all your teams. To edit one, just removee it and add it again.',
+    'my_teams_1' => 'Here you can view all your teams. To edit one, just removee it and add it again. This is allowed until one week before the event.',
 
     'profile_button_1' => 'delete my account',
 
-    'home_1' => 'Welcome to the team registration tool for the RoboCupJunior.'
+    'home_header' => 'Welcome to the team registration tool for the RoboCupJunior.',
+    'home_1' => 'Here you can register yourself for the dutch national championschip. Please make one account per school, this is supposed to be done by the coach. After creating you account you can manage your teams.',
+    'home_2' => 'By continuing your regsitration process you accept our <a href="https://www.robocupjunior.nl/gdpr-avg/">privacy statement (dutch)</a>.',
+    'home_3' => 'For questions and other remarks please send a message to <a href="mailto:mees@robocupjunior.nl">mees@robocupjunior.nl</a>.'
 
 ];
